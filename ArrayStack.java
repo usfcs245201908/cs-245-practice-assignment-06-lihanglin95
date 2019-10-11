@@ -14,11 +14,13 @@ public class ArrayStack<T> implements Stack<T> {
 	
 	void growArray() {
 		T[] newArray = (T[]) new Object[a.length * 2];
+		//copy from a to newArray
 		System.arraycopy(a, 0, newArray, 0, a.length);
 		a = newArray;
 	}
 	
 	public void push(T item) {
+		//grow the array if the array is full
 		if(top == a.length -1)
 			growArray();
 		a[++top] = item;
@@ -26,15 +28,16 @@ public class ArrayStack<T> implements Stack<T> {
 	}
 	
 	public T pop() throws Exception{
-		if(!empty())
-			return a[top--];
-		throw new Exception();
+		if(empty())
+			throw new Exception();
+		return a[top--];
 	}
 	
 	public T peek() throws Exception {
-		if(!empty())
-			return a[top];
-		throw new Exception();
+		if(empty())
+			throw new Exception();
+		return a[top];
+		
 	}
 	
 
